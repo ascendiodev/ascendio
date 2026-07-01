@@ -493,11 +493,19 @@
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <!-- EmailJS Script (v4) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    /* EmailJS initialisation: Hier USER_ID eintragen */
+    /* ============================================
+       EmailJS KONFIGURATION
+       ============================================
+       Ersetze die folgende PUBLIC_KEY mit deiner eigenen:
+       - Gehe zu: https://dashboard.emailjs.com
+       - Kopiere deine PUBLIC_KEY
+       - Ersetze 'YOUR_PUBLIC_KEY' damit
+    */
     (function() {
-      emailjs.init('YOUR_EMAILJS_USER_ID');
+      emailjs.init('YOUR_PUBLIC_KEY');
     })();
   </script>
 </head>
@@ -716,10 +724,13 @@
     }
 
     function validatePhone(value) {
-      const cleaned = value.replace(/[\s+]/g, '');
-      const digitsOnly = /^\+?\d+$/.test(value.replace(/\s/g, ''));
-      const digitCount = cleaned.replace(/\D/g, '').length;
-      return digitsOnly && digitCount >= 6;
+      // Telefon ist OPTIONAL - wenn leer, ist das ok
+      if (value === '') {
+        return true;
+      }
+      // Wenn ausgefüllt: Nur Zahlen, Leerzeichen, +, -, / erlaubt
+      const validPhoneChars = /^[\d\s+\-/]+$/.test(value);
+      return validPhoneChars;
     }
 
     function validateMessage(value) {
@@ -765,7 +776,7 @@
       }
 
       if (!validatePhone(phone)) {
-        setError(phoneField, phoneError, 'Bitte gültige Telefonnummer eingeben');
+        setError(phoneField, phoneError, 'Nur Zahlen, Leerzeichen, +, -, / erlaubt');
         valid = false;
       }
 
@@ -778,26 +789,55 @@
         return;
       }
 
+      // Daten für EmailJS vorbereiten - mit exakten Variablennamen
       const templateParams = {
-        from_name: name,
-        from_email: email,
-        from_phone: phone,
-        message: message,
-        to_email: 'ascendio.ds@gmail.com'
+        name: name,
+        email: email,
+        phone: phone,
+        message: message
       };
 
-      /*
-        EMAILJS KONFIGURATION:
-        - ERSETZE SERVICE_ID mit deinem EmailJS-Service
-        - ERSETZE TEMPLATE_ID mit deinem EmailJS-Template
-        - ERSETZE USER_ID mit deiner EmailJS-Benutzer-ID im <script> oben
+      // Button in \"Wird gesendet...\" umwandeln
+      const submitBtn = form.querySelector('button[type=\"submit\"]');
+      const originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Wird gesendet...';
+      submitBtn.disabled = true;
+
+      /* ============================================
+         EmailJS VERSAND KONFIGURATION
+         ============================================
+         Ersetze folgende Werte mit deinen eigenen:
+         
+         YOUR_SERVICE_ID:
+         - Gehe zu: https://dashboard.emailjs.com/admin/services
+         - Kopiere deine Service ID (z.B. service_xxxxxxx)
+         
+         YOUR_TEMPLATE_ID:
+         - Gehe zu: https://dashboard.emailjs.com/admin/templates
+         - Erstelle ein Template mit den Variablen:
+           {{name}}, {{email}}, {{phone}}, {{message}}
+         - Kopiere die Template ID (z.B. template_xxxxxxx)
       */
       emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-        .then(function() {
-          showSuccess('Vielen Dank. Ihre Anfrage wurde erfolgreich versendet.');
+        .then(function(response) {
+          // Erfolgreicher Versand - grüne Erfolgsmeldung
+          messageBox.textContent = 'Vielen Dank! Ihre Anfrage wurde erfolgreich versendet.';
+          messageBox.style.display = 'block';
+          messageBox.style.color = '#1f5d34';
+          messageBox.style.background = '#eaf8ee';
+          messageBox.style.borderColor = '#cdeccd';
           form.reset();
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
         }, function(error) {
-          showSuccess('Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später erneut.');
+          // Fehler beim Versand - rote Fehlermeldung
+          messageBox.textContent = 'Leider gab es ein Problem beim Senden. Bitte versuchen Sie es später erneut oder schreiben Sie direkt an ascendio.ds@gmail.com.';
+          messageBox.style.display = 'block';
+          messageBox.style.color = '#c42d2d';
+          messageBox.style.background = '#fef2f2';
+          messageBox.style.borderColor = '#fca5a5';
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
           console.error('EmailJS Fehler:', error);
         });
     });
