@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCENDIO Digital Services | Webseiten, SEO & Online-Marketing</title>
+  <meta name="description" content="ASCENDIO Digital Services unterstützt kleine Unternehmen mit professionellen Webseiten, SEO und Online-Marketing. Kostenlose Website-Analyse inklusive." />
+  <meta name="keywords" content="Digitalagentur, ASCENDIO, Webseiten, SEO, Online Marketing, lokale Unternehmen, Website Analyse" />
+  <meta property="og:title" content="ASCENDIO Digital Services | Webseiten, SEO & Online-Marketing" />
+  <meta property="og:description" content="Professionelle Unterstützung für kleine Unternehmen: Mehr Sichtbarkeit, mehr Kundenanfragen und messbare Ergebnisse." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="hero-background.jpg" />
+  <meta property="og:url" content="https://www.ascendio.digital" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root {
+      --primary: #0f4c81;
+      --primary-dark: #072f4f;
+      --secondary: #2a93d5;
+      --light: #f4f8fb;
+      --text: #1f2a37;
+      --muted: #687383;
+      --border: #d8e3ec;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(7, 47, 79, 0.12);
+      --shadow-soft: 0 10px 30px rgba(7, 47, 79, 0.08);
+      --radius: 1.2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--white);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+      color: var(--primary-dark);
+      line-height: 1.05;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 230px;
+      padding: 1rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.98rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 18px 40px rgba(15, 76, 129, 0.18);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: var(--white);
+      box-shadow: 0 16px 40px rgba(15, 76, 129, 0.18);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.18);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.24);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.26);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(216, 227, 236, 0.85);
+      box-shadow: 0 10px 30px rgba(15, 76, 129, 0.05);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+    }
+
+    .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      background: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      list-style: none;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      font-weight: 600;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 2px;
+      background: var(--secondary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      align-items: center;
+      color: var(--white);
+      background: linear-gradient(180deg, rgba(7, 47, 79, 0.95) 0%, rgba(7, 47, 79, 0.8) 100%), url("hero-background.jpg") center/cover no-repeat;
+    }
+
+    .hero .container {
+      padding: 5.5rem 0;
+    }
+
+    .hero-content {
+      max-width: 680px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 4vw, 4rem);
+      line-height: 1.05;
+      margin-bottom: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.92);
+      margin-bottom: 2rem;
+      max-width: 680px;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .services-grid,
+    .advantages-grid,
+    .feature-grid,
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.9rem;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(7, 47, 79, 0.12);
+      border-color: rgba(42, 147, 213, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.22rem;
+      margin-bottom: 0.85rem;
+      color: var(--primary-dark);
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .about {
+      background: var(--light);
+    }
+
+    .about-wrapper {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .stats-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      background: var(--light);
+      border-radius: 1rem;
+      text-align: center;
+      min-height: 130px;
+      display: grid;
+      place-items: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .advantage {
+      text-align: center;
+      padding: 1.6rem 1.2rem;
+      background: linear-gradient(135deg, #f8fbfe, #eef5fb);
+      border-radius: 1.2rem;
+      border: 1px solid var(--border);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .advantage h3 {
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .advantage p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact {
+      background: linear-gradient(135deg, #f7fbff 0%, #eef5fb 100%);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      background: var(--primary-dark);
+      color: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .contact-info h3 {
+      margin-bottom: 1rem;
+      font-size: 1.35rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 0.9rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.8;
+    }
+
+    form {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .field-group {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      font: inherit;
+      background: #fbfdff;
+      resize: vertical;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(42, 147, 213, 0.8);
+      box-shadow: 0 0 0 6px rgba(42, 147, 213, 0.1);
+    }
+
+    .error-text {
+      color: #c42d2d;
+      font-size: 0.92rem;
+      min-height: 1.2rem;
+      opacity: 0.95;
+    }
+
+    .input-error {
+      border-color: #c42d2d;
+    }
+
+    .success-message {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 0.95rem;
+      background: #eaf8ee;
+      color: #1f5d34;
+      border: 1px solid #cdeccd;
+      display: none;
+      opacity: 0;
+      animation: fadeIn 0.45s ease forwards;
+    }
+
+    .feature-grid .card {
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .analysis-grid .card {
+      min-height: 160px;
+    }
+
+    .highlight {
+      color: var(--secondary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      background: var(--primary-dark);
+      color: rgba(255,255,255,0.82);
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      margin-top: 0.45rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .services-grid,
+      .advantages-grid,
+      .about-wrapper,
+      .contact-grid,
+      .feature-grid,
+      .analysis-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-box {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .nav-links {
+        justify-content: center;
+        gap: 0.8rem 1rem;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .form-row,
+      .stats-box {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 4rem 0;
+      }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    /* EmailJS initialisation: Hier USER_ID eintragen */
+    (function() {
+      emailjs.init('YOUR_EMAILJS_USER_ID');
+    })();
+  </script>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#start" class="logo" aria-label="ASCENDIO Digital Services Startseite">
+        <img src="ascendio.jpg" alt="ASCENDIO Logo" />
+        <span>ASCENDIO Digital Services</span>
+      </a>
+      <nav aria-label="Hauptnavigation">
+        <ul class="nav-links">
+          <li><a href="#start">Start</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#advantages">Vorteile</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="start">
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>Ihre Website verliert bereits Kunden – wir zeigen Ihnen warum.</h1>
+        <p>Wir analysieren Ihre Website kostenlos und finden technische sowie inhaltliche Probleme, die Besucher davon abhalten, Kontakt aufzunehmen.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Kostenlose Website Analyse</a>
+          <a href="#services" class="btn btn-secondary">Mehr erfahren</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section container">
+      <h2 class="section-title">Unsere Services</h2>
+      <p class="section-text">Maßgeschneiderte digitale Lösungen, damit Ihr Unternehmen mehr Sichtbarkeit, Vertrauen und Kunden gewinnt.</p>
+      <div class="services-grid">
+        <article class="card">
+          <h3>SEO Optimierung</h3>
+          <p>Bessere Sichtbarkeit bei Google und mehr relevante Besucher.</p>
+        </article>
+        <article class="card">
+          <h3>Webseiten Analyse</h3>
+          <p>Wir finden Schwachstellen, die Besucher davon abhalten, Kontakt aufzunehmen.</p>
+        </article>
+        <article class="card">
+          <h3>Google Ads</h3>
+          <p>Gezielte Kampagnen für mehr Klicks, Anfragen und Umsatz.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container about-wrapper">
+        <div>
+          <h2 class="section-title">Digitale Lösungen für lokale Unternehmen</h2>
+          <p class="section-text">ASCENDIO Digital Services unterstützt kleine und mittelständische Unternehmen dabei, aus ihrer Website mehr herauszuholen. Unser Fokus liegt auf Sichtbarkeit, Nutzerführung, Kontaktanfragen und messbaren Ergebnissen.</p>
+        </div>
+        <div class="stats-box" aria-label="Leistungsbereiche">
+          <div class="stat"><strong>SEO</strong><span>Mehr Sichtbarkeit</span></div>
+          <div class="stat"><strong>Conversion</strong><span>Mehr Anfragen</span></div>
+          <div class="stat"><strong>Google Ads</strong><span>Gezielte Reichweite</span></div>
+          <div class="stat"><strong>Webanalyse</strong><span>Klare Erkenntnisse</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="advantages" class="section container">
+      <h2 class="section-title">Ihre Vorteile</h2>
+      <p class="section-text">Wir setzen auf einfache Strategien, klare Kommunikation und messbare Erfolge.</p>
+      <div class="advantages-grid">
+        <div class="advantage">
+          <h3>Mehr Anfragen</h3>
+          <p>Konversionen und Kontaktaufnahmen werden gezielt gesteigert.</p>
+        </div>
+        <div class="advantage">
+          <h3>Bessere Google-Sichtbarkeit</h3>
+          <p>Ihre Leistungen werden dort gefunden, wo Kunden suchen.</p>
+        </div>
+        <div class="advantage">
+          <h3>Optimierte Landingpages</h3>
+          <p>Persuasive Seiten, die Besucher in Kunden verwandeln.</p>
+        </div>
+        <div class="advantage">
+          <h3>Klare Auswertung</h3>
+          <p>Jede Maßnahme wird nachvollziehbar und datenbasiert begleitet.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="section container">
+      <h2 class="section-title">Warum Unternehmen mit uns arbeiten</h2>
+      <div class="feature-grid">
+        <article class="card">
+          <h3>✓ Klare Kommunikation</h3>
+          <p>Wir sprechen Ihre Sprache und erklären Maßnahmen transparent.</p>
+        </article>
+        <article class="card">
+          <h3>✓ Messbare Ergebnisse</h3>
+          <p>Erfolge zeigen wir Ihnen datenbasiert und leicht verständlich.</p>
+        </article>
+        <article class="card">
+          <h3>✓ Transparente Auswertungen</h3>
+          <p>Sie erhalten klare Einblicke in Performance und Fortschritt.</p>
+        </article>
+        <article class="card">
+          <h3>✓ Individuelle Strategien</h3>
+          <p>Maßnahmen werden exakt auf Ihr Unternehmen zugeschnitten.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="proof" class="section about">
+      <div class="container">
+        <h2 class="section-title">Was wir analysieren</h2>
+        <div class="analysis-grid">
+          <article class="card">
+            <h3>SEO Score</h3>
+            <p>Technische und inhaltliche Faktoren, die Ihr Ranking beeinflussen.</p>
+          </article>
+          <article class="card">
+            <h3>Ladegeschwindigkeit</h3>
+            <p>Wie schnell Ihre Seite lädt und wie das Nutzererlebnis davon profitiert.</p>
+          </article>
+          <article class="card">
+            <h3>Conversion Rate</h3>
+            <p>Ob Besucher zu Kunden werden und wie Sie mehr Anfragen erzeugen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container contact-grid">
+        <aside class="contact-info">
+          <h3>Kontaktieren Sie uns</h3>
+          <p>Sie möchten Ihre Online-Präsenz verbessern? Wir beraten Sie gerne unverbindlich.</p>
+          <p>E-Mail: ascendo.ds@gmail.com</p>
+          <p>Telefon: +49 (0) 30 12345678</p>
+        </aside>
+
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Ihr Name" />
+              <div id="nameError" class="error-text"></div>
+            </div>
+            <div class="field-group">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" placeholder="Ihre E-Mail" />
+              <div id="emailError" class="error-text"></div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" placeholder="Ihre Telefonnummer" />
+            <div id="phoneError" class="error-text"></div>
+          </div>
+          <div class="field-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="5" placeholder="Beschreiben Sie Ihr Anliegen"></textarea>
+            <div id="messageError" class="error-text"></div>
+          </div>
+          <button type="submit" class="btn btn-primary">Anfrage senden</button>
+          <div id="formMessage" class="success-message" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>ASCENDIO Digital Services</strong>
+      <p>Webseiten, SEO & Online-Marketing für kleine Unternehmen</p>
+      <p>E-Mail: kontakt@ascendio.de</p>
+    </div>
+  </footer>
+
+  <script>
+    // Formular-Elemente
+    const form = document.getElementById('contactForm');
+    const messageBox = document.getElementById('formMessage');
+
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const phoneField = document.getElementById('phone');
+    const messageField = document.getElementById('message');
+
+    const nameError = document.getElementById('nameError');
+    const emailError = document.getElementById('emailError');
+    const phoneError = document.getElementById('phoneError');
+    const messageError = document.getElementById('messageError');
+
+    // Hilfsfunktion zur Anzeige von Fehlern
+    function setError(field, errorElement, message) {
+      field.classList.add('input-error');
+      errorElement.textContent = message;
+    }
+
+    function clearError(field, errorElement) {
+      field.classList.remove('input-error');
+      errorElement.textContent = '';
+    }
+
+    function validateName(value) {
+      const isLongEnough = value.length >= 2;
+      const hasLettersOnly = /^[A-Za-zÄÖÜäöüß\s-]+$/.test(value);
+      return isLongEnough && hasLettersOnly;
+    }
+
+    function validateEmail(value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(value);
+    }
+
+    function validatePhone(value) {
+      const cleaned = value.replace(/[\s+]/g, '');
+      const digitsOnly = /^\+?\d+$/.test(value.replace(/\s/g, ''));
+      const digitCount = cleaned.replace(/\D/g, '').length;
+      return digitsOnly && digitCount >= 6;
+    }
+
+    function validateMessage(value) {
+      const hasEnoughCharacters = value.length >= 15;
+      const hasMultipleWords = value.trim().split(/\s+/).length > 1;
+      return hasEnoughCharacters && hasMultipleWords;
+    }
+
+    function clearAllErrors() {
+      clearError(nameField, nameError);
+      clearError(emailField, emailError);
+      clearError(phoneField, phoneError);
+      clearError(messageField, messageError);
+    }
+
+    function showSuccess(text) {
+      messageBox.textContent = text;
+      messageBox.style.display = 'block';
+      messageBox.style.opacity = '1';
+    }
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      clearAllErrors();
+      messageBox.style.display = 'none';
+      messageBox.style.opacity = '0';
+
+      const name = nameField.value.trim();
+      const email = emailField.value.trim();
+      const phone = phoneField.value.trim();
+      const message = messageField.value.trim();
+
+      let valid = true;
+
+      if (!validateName(name)) {
+        setError(nameField, nameError, 'Bitte echten Namen eingeben');
+        valid = false;
+      }
+
+      if (!validateEmail(email)) {
+        setError(emailField, emailError, 'Bitte gültige E-Mail eingeben');
+        valid = false;
+      }
+
+      if (!validatePhone(phone)) {
+        setError(phoneField, phoneError, 'Bitte gültige Telefonnummer eingeben');
+        valid = false;
+      }
+
+      if (!validateMessage(message)) {
+        setError(messageField, messageError, 'Bitte Anfrage genauer beschreiben');
+        valid = false;
+      }
+
+      if (!valid) {
+        return;
+      }
+
+      const templateParams = {
+        from_name: name,
+        from_email: email,
+        from_phone: phone,
+        message: message,
+        to_email: 'ascendio.ds@gmail.com'
+      };
+
+      /*
+        EMAILJS KONFIGURATION:
+        - ERSETZE SERVICE_ID mit deinem EmailJS-Service
+        - ERSETZE TEMPLATE_ID mit deinem EmailJS-Template
+        - ERSETZE USER_ID mit deiner EmailJS-Benutzer-ID im <script> oben
+      */
+      emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+        .then(function() {
+          showSuccess('Vielen Dank. Ihre Anfrage wurde erfolgreich versendet.');
+          form.reset();
+        }, function(error) {
+          showSuccess('Es gab ein Problem beim Senden Ihrer Anfrage. Bitte versuchen Sie es später erneut.');
+          console.error('EmailJS Fehler:', error);
+        });
+    });
+  </script>
+</body>
+</html>
